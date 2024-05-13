@@ -26,7 +26,7 @@ var (
 	debugLogger    *slog.Logger
 	configFileName string
 	config         *ConfigType
-	tenMinuteTick  = time.NewTicker(1 * time.Minute)
+	tenMinuteTick  = time.NewTicker(10 * time.Minute)
 	quit           = make(chan struct{})
 	ratelimit_used = promauto.NewGauge(prometheus.GaugeOpts{
 		Name: "ratelimit_used",
