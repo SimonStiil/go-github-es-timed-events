@@ -1,0 +1,7 @@
+elastic:
+  addresses: 
+    - "https://localhost:9200"
+  username: elastic
+github:
+  public_address: https://example.com/
+  pr_page_size: 50
