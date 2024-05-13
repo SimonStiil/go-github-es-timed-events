@@ -33,6 +33,10 @@ func Test_ListRepostories(t *testing.T) {
 	setupTestlogging()
 	c := &Crawler{Config: ConfigGithub{Endpoint: "/webhook"}}
 	c.Config.populateEnv()
+	if c.Config.Token == "" {
+		t.Log("Token not configured, Skipping Test")
+		return
+	}
 	repos, err := c.ListRepositories()
 	if err != nil {
 		t.Error(err)
@@ -48,6 +52,10 @@ func Test_ListPullRequests(t *testing.T) {
 
 	c := &Crawler{Config: ConfigGithub{Endpoint: "/webhook"}}
 	c.Config.populateEnv()
+	if c.Config.Token == "" {
+		t.Log("Token not configured, Skipping Test")
+		return
+	}
 	pulls, next, err := c.getPullRequestsPage("https://api.github.com/repos/SimonStiil/turingpi-flux/pulls?state=all&per_page=50")
 	if err != nil {
 		t.Error(err)
@@ -65,6 +73,10 @@ func Test_ListWebhooks(t *testing.T) {
 	setupTestlogging()
 	c := &Crawler{Config: ConfigGithub{Endpoint: "/webhook"}}
 	c.Config.populateEnv()
+	if c.Config.Token == "" {
+		t.Log("Token not configured, Skipping Test")
+		return
+	}
 	webhooks, next, err := c.getWebHooksPage("https://api.github.com/repos/SimonStiil/kube-auth-proxy/hooks")
 	if err != nil {
 		t.Error(err)
