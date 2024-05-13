@@ -32,6 +32,12 @@ podTemplate(yaml: '''
         - sleep
         args: 
         - 99d
+        env:
+        - name: HOOK_GITHUB_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: github-token-secret
+              key: text
       restartPolicy: Never
       volumes:
       - name: kaniko-secret
