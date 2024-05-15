@@ -3,6 +3,13 @@
   "extends": [
     "config:recommended"
   ],
+ 
+  "enabledManagers": [
+    "gomod",
+    "dockerfile",
+    "custom.regex",
+    "regex"
+  ],
   "groupName": "all dependencies",
   "groupSlug": "all",
   "lockFileMaintenance": {
@@ -17,5 +24,14 @@
       ]
     }
   ],
-  "separateMajorMinor": false
+  "separateMajorMinor": false,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["(^|/)Jenkinsfile$"],
+      "matchStrings": ["\\simage: (?<depName>.*?):(?<currentValue>.*?)\\s"],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker"
+    }
+  ]
 }
