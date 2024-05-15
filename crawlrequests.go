@@ -158,9 +158,9 @@ func (c *Crawler) getRepositoriesPage(url string) ([]Repository, string, error) 
 		"X-GitHub-Api-Version": {"2022-11-28"},
 		"Authorization":        {"Bearer " + c.Config.Token},
 	}
-	debugLogger.Debug("doingRequest", "req", req)
 	resp, err := client.Do(req)
 	if err != nil {
+		debugLogger.Debug("error doingRequest", "req", req)
 		return nil, "", err
 	}
 	if resp.StatusCode == http.StatusUnauthorized {
@@ -356,8 +356,11 @@ func (c *Crawler) getPullRequestsPage(url string) ([]PullRequest, string, error)
 		"X-GitHub-Api-Version": {"2022-11-28"},
 		"Authorization":        {"Bearer " + c.Config.Token},
 	}
-	debugLogger.Debug("doingRequest", "req", req)
 	resp, err := client.Do(req)
+	if err != nil {
+		debugLogger.Debug("error doingRequest", "req", req)
+		return nil, "", err
+	}
 
 	linkUnparsed := resp.Header.Get("Link")
 	links := linkheader.Parse(linkUnparsed)
@@ -366,9 +369,6 @@ func (c *Crawler) getPullRequestsPage(url string) ([]PullRequest, string, error)
 	nextURL := ""
 	if len(nextLinks) > 0 {
 		nextURL = nextLinks[0].URL
-	}
-	if err != nil {
-		return nil, "", err
 	}
 	bodyText, err := io.ReadAll(resp.Body)
 	if resp.StatusCode == http.StatusUnauthorized {
@@ -429,8 +429,11 @@ func (c *Crawler) getWebHooksPage(url string) ([]WebHook, string, error) {
 		"X-GitHub-Api-Version": {"2022-11-28"},
 		"Authorization":        {"Bearer " + c.Config.Token},
 	}
-	debugLogger.Debug("doingRequest", "req", req)
 	resp, err := client.Do(req)
+	if err != nil {
+		debugLogger.Debug("error doingRequest", "req", req)
+		return nil, "", err
+	}
 
 	linkUnparsed := resp.Header.Get("Link")
 	links := linkheader.Parse(linkUnparsed)
@@ -439,9 +442,6 @@ func (c *Crawler) getWebHooksPage(url string) ([]WebHook, string, error) {
 	nextURL := ""
 	if len(nextLinks) > 0 {
 		nextURL = nextLinks[0].URL
-	}
-	if err != nil {
-		return nil, "", err
 	}
 	bodyText, err := io.ReadAll(resp.Body)
 	if resp.StatusCode == http.StatusUnauthorized {
@@ -479,12 +479,12 @@ func (c *Crawler) createWebHook(url string, webhook WebHook) (*WebHook, error) {
 		"X-GitHub-Api-Version": {"2022-11-28"},
 		"Authorization":        {"Bearer " + c.Config.Token},
 	}
-	debugLogger.Debug("doingRequest", "req", req)
 	resp, err := client.Do(req)
-	debugLogger.Debug("ratelimit", "content", c.getRateLimits(resp.Header))
 	if err != nil {
+		debugLogger.Debug("error doingRequest", "req", req)
 		return nil, err
 	}
+	debugLogger.Debug("ratelimit", "content", c.getRateLimits(resp.Header))
 	bodyText, err := io.ReadAll(resp.Body)
 	if resp.StatusCode == http.StatusUnauthorized {
 		return nil, ErrStatusUnauthorized
