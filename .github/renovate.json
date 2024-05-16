@@ -3,13 +3,6 @@
   "extends": [
     "config:recommended"
   ],
- 
-  "enabledManagers": [
-    "gomod",
-    "dockerfile",
-    "custom.regex",
-    "regex"
-  ],
   "groupName": "all dependencies",
   "groupSlug": "all",
   "lockFileMaintenance": {
