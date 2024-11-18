@@ -467,7 +467,7 @@ func (c *Crawler) createWebHook(url string, webhook WebHook) (*WebHook, error) {
 	client := &http.Client{}
 	marshalled, err := json.Marshal(webhook)
 	if err != nil {
-		logger.Error("Impossible to marshall Webhook: %s", err)
+		logger.Error("Impossible to marshall Webhook", "error", err)
 		return nil, err
 	}
 	req, err := http.NewRequest("POST", url, bytes.NewReader(marshalled))
