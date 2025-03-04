@@ -2,7 +2,7 @@ module github.com/SimonStiil/go-github-es-timed-events
 
 go 1.22.2
 
-require github.com/prometheus/client_golang v1.21.0
+require github.com/prometheus/client_golang v1.21.1
 
 require (
 	github.com/elastic/elastic-transport-go/v8 v8.6.1 // indirect
