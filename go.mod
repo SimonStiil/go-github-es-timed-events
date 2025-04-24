@@ -2,7 +2,10 @@ module github.com/SimonStiil/go-github-es-timed-events
 
 go 1.24.0
 
-require github.com/prometheus/client_golang v1.22.0
+require (
+	github.com/elastic/go-elasticsearch/v8 v8.18.0
+	github.com/prometheus/client_golang v1.22.0
+)
 
 require (
 	github.com/elastic/elastic-transport-go/v8 v8.7.0 // indirect
@@ -30,7 +33,7 @@ require (
 require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
-	github.com/elastic/go-elasticsearch/v8 v8.18.0
+	github.com/elastic/go-elasticsearch/v9 v9.0.0
 	github.com/google/uuid v1.6.0
 	github.com/prometheus/client_model v0.6.2 // indirect
 	github.com/prometheus/common v0.63.0 // indirect
