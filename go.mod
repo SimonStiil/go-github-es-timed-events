@@ -3,14 +3,14 @@ module github.com/SimonStiil/go-github-es-timed-events
 go 1.24.0
 
 require (
-	github.com/elastic/go-elasticsearch/v9 v9.3.1
+	github.com/elastic/go-elasticsearch/v9 v9.3.2
 	github.com/prometheus/client_golang v1.23.2
 )
 
 require (
-	github.com/elastic/elastic-transport-go/v8 v8.8.0 // indirect
+	github.com/elastic/elastic-transport-go/v8 v8.9.0 // indirect
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
-	github.com/go-logr/logr v1.4.2 // indirect
+	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
