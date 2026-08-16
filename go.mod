@@ -1,9 +1,9 @@
 module github.com/SimonStiil/go-github-es-timed-events
 
-go 1.24.0
+go 1.25
 
 require (
-	github.com/elastic/go-elasticsearch/v9 v9.3.3
+	github.com/elastic/go-elasticsearch/v9 v9.4.2
 	github.com/prometheus/client_golang v1.23.2
 )
 
